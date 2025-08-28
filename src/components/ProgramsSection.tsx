@@ -91,7 +91,7 @@ const ProgramsSection = () => {
                     ))}
                   </div>
                   
-                  <Button variant="outline" className="border-college-navy text-college-navy hover:bg-college-navy hover:text-white">
+                  <Button variant="outline" className="border-college-navy text-college-navy hover:bg-college-navy hover:text-white rounded-xl transition-colors duration-200">
                     Learn More
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>

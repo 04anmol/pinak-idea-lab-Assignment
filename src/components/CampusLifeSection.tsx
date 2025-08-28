@@ -77,10 +77,10 @@ const CampusLifeSection = () => {
             Connect with our admissions team to learn more about opportunities at Pinak Engineering College.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-college-navy hover:bg-college-charcoal text-white px-8 py-3">
+            <Button className="bg-college-navy hover:bg-college-charcoal text-white px-8 py-3 rounded-xl transition-colors duration-200">
               Schedule Campus Tour
             </Button>
-            <Button variant="outline" className="border-college-navy text-college-navy hover:bg-college-navy hover:text-white px-8 py-3">
+            <Button variant="outline" className="border-college-navy text-college-navy hover:bg-college-navy hover:text-white px-8 py-3 rounded-xl transition-colors duration-200">
               Contact Admissions
             </Button>
           </div>

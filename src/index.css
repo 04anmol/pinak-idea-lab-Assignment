@@ -9,7 +9,7 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Professional Oxford-style Color Palette */
-    --background: 0 0% 100%;
+    --background: 39 100% 97%;
     --foreground: 220 13% 18%;
 
     --card: 0 0% 100%;
