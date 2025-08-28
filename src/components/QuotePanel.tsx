@@ -1,98 +1,83 @@
-import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Quote } from "lucide-react";
+import { Users } from "lucide-react";
+import { useState } from "react";
 
 const quotes = [
   {
-    text: "The way to get started is to quit talking and begin doing.",
-    author: "Walt Disney",
-    title: "Innovator & Entrepreneur",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
+    text: "Imagination is more important than knowledge. For knowledge is limited, whereas imagination embraces the entire world, stimulating progress, giving birth to evolution.",
+    author: "Albert Einstein",
+    title: "Theoretical physicist & Nobel laureate",
+    avatar: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg"
   },
   {
-    text: "Innovation distinguishes between a leader and a follower.",
-    author: "Steve Jobs",
-    title: "Co-founder of Apple",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
+    text: "If you want to find the secrets of the universe, think in terms of energy, frequency and vibration.",
+    author: "Nikola Tesla",
+    title: "Electrical engineer & inventor",
+    avatar: "https://upload.wikimedia.org/wikipedia/commons/d/d4/N.Tesla.JPG"
   },
   {
-    text: "The future belongs to those who believe in the beauty of their dreams.",
-    author: "Eleanor Roosevelt",
-    title: "Former First Lady & Diplomat",
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b550?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
+    text: "There was no choice but to be pioneers – we had to solve problems no one had solved before.",
+    author: "Margaret Hamilton",
+    title: "Software engineer, Apollo Guidance Computer",
+    avatar: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Margaret_Hamilton_-_restoration.jpg"
   },
   {
-    text: "Engineering is not only study of 45 subjects but it is moral studies of intellectual life.",
-    author: "Prakhar Srivastav",
-    title: "Engineering Student",
-    image: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
+    text: "UNIX is very simple, it just needs a genius to understand its simplicity.",
+    author: "Dennis Ritchie",
+    title: "Computer scientist, creator of C & UNIX",
+    avatar: "https://upload.wikimedia.org/wikipedia/commons/2/23/Dennis_Ritchie_2011.jpg"
   },
   {
-    text: "Scientists study the world as it is, engineers create the world that never was.",
-    author: "Theodore von Kármán",
-    title: "Aerospace Engineer",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
+    text: "All creative people want to do the unexpected.",
+    author: "Hedy Lamarr",
+    title: "Inventor of spread‑spectrum concepts",
+    avatar: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Hedy_Lamarr_in_The_Heavenly_Body_1944.jpg"
+  },
+  {
+    text: "I am opposed to the laying down of rules and laws as fetters to genius and progress.",
+    author: "Isambard Kingdom Brunel",
+    title: "Civil & mechanical engineer",
+    avatar: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Isambard_Kingdom_Brunel%2C_1857.jpg"
   }
 ];
 
 const QuotePanel = () => {
-  const [currentQuote, setCurrentQuote] = useState(0);
+  const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentQuote((prev) => (prev + 1) % quotes.length);
-    }, 5000);
-    
-    return () => clearInterval(interval);
-  }, []);
-
-  const quote = quotes[currentQuote];
+  const handleImageError = (index: number) => {
+    setFailedImages(prev => new Set(prev).add(index));
+  };
 
   return (
-    <section className="py-24 bg-college-navy">
+    <section className="py-16 mx-16 md:mx-24 lg:mx-32 xl:mx-40 rounded-3xl overflow-hidden" style={{ backgroundColor: '#FDFBF7' }}>
       <div className="container mx-auto px-6">
-        <Card className="max-w-5xl mx-auto bg-white border-0 shadow-xl">
-          <CardContent className="p-16 text-center">
-            <div className="w-16 h-16 bg-college-gray rounded-full flex items-center justify-center mx-auto mb-8">
-              <Quote className="h-8 w-8 text-college-navy" />
-            </div>
-            
-            <blockquote className="text-xl md:text-2xl font-light text-college-navy mb-12 leading-relaxed max-w-3xl mx-auto">
-              "{quote.text}"
-            </blockquote>
-            
-            <div className="flex items-center justify-center space-x-6">
-              <div className="relative">
-                <img
-                  src={quote.image}
-                  alt={quote.author}
-                  className="w-24 h-24 rounded-full grayscale border-4 border-college-silver object-cover shadow-sm"
-                />
-              </div>
-              
-              <div className="text-left">
-                <p className="text-lg font-semibold text-college-navy">
-                  {quote.author}
-                </p>
-                <p className="text-muted-foreground">
-                  {quote.title}
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex justify-center space-x-3 mt-12">
-              {quotes.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentQuote(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentQuote ? 'bg-college-navy' : 'bg-college-silver'
-                  }`}
-                />
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {quotes.map((q, i) => (
+            <Card key={i} className="bg-[#7B1121] hover:bg-[#FDFBF7] border border-white/10 hover:border-gray-200 rounded-2xl text-white/90 hover:text-gray-700 transition-all duration-300 ease-in-out cursor-pointer group">
+              <CardContent className="p-6 flex flex-col h-full">
+                <p className="text-sm leading-relaxed mb-6 transition-colors duration-300">"{q.text}"</p>
+                <div className="mt-auto flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center overflow-hidden">
+                    {q.avatar && !failedImages.has(i) ? (
+                      <img 
+                        src={q.avatar} 
+                        alt={q.author} 
+                        className="w-full h-full object-cover"
+                        onError={() => handleImageError(i)}
+                      />
+                    ) : (
+                      <Users className="w-4 h-4 text-white/60" />
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-white group-hover:text-gray-700 transition-colors duration-300">{q.author}</p>
+                    <p className="text-xs text-white/60 group-hover:text-gray-700 transition-colors duration-300">{q.title}</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );
