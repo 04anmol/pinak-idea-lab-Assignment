@@ -27,7 +27,7 @@ const CampusLifeSection = () => {
   return (
     <section id="campus" className="py-20 mx-8 md:mx-16 lg:mx-20 xl:mx-24" style={{ backgroundColor: '#FFFAF0' }}>
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center justify-center">
           {/* Stacked image carousel */}
           <div className="relative" style={{ height: CARD_H }}>
             {visible.map((idx, i) => (
